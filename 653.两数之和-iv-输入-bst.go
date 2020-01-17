@@ -23,6 +23,21 @@ func findTarget(root *TreeNode, k int) bool {
 	// return findTarget(root.Left, k) || findTarget(root.Right, k)
 	// || findTarget(root.Left, k-root.Val)
 	// || findTarget(root.Rigth, k-root.Right)
+	m := make(map[int]bool)
+	var dfs func(root *TreeNode, k int)bool
+	dfs = func(root *TreeNode, k int)bool{
+		if root == nil {
+			return false
+		}
+		_,ok := m[k-root.Val] 
+		if ok {
+			return true
+		}
+		m[root.Val] = true
+		return dfs(root.Left, k) || dfs(root.Right, k)
+	}
+	return  dfs(root, k)
 }
+
 // @lc code=end
 
