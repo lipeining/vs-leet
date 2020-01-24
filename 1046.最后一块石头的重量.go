@@ -6,7 +6,7 @@
 import "sort"
 // @lc code=start
 func lastStoneWeight(stones []int) int {
-
+	
 }
 // @lc code=end
 
