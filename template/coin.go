@@ -56,3 +56,44 @@ func change(amount int, coins []int) int {
 	fmt.Println(dp)
 	return dp[amount]
 }
+
+// 因为硬币可以重复使用，因此这是一个完全背包问题。完全背包只需要将 0-1 背包的逆序遍历 dp 数组改为正序遍历即可。
+
+// public int coinChange(int[] coins, int amount) {
+//     int[] dp = new int[amount + 1];
+//     for (int coin : coins) {
+//         for (int i = coin; i <= amount; i++) { //将逆序遍历改为正序遍历
+//             if (i == coin) {
+//                 dp[i] = 1;
+//             } else if (dp[i] == 0 && dp[i - coin] != 0) {
+//                 dp[i] = dp[i - coin] + 1;
+
+//             } else if (dp[i - coin] != 0) {
+//                 dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+//             }
+//         }
+//     }
+//     return dp[amount] == 0 ? -1 : dp[amount];
+// }
+
+// 求解顺序的完全背包问题时，对物品的迭代应该放在最里层，
+// s = "leetcode",
+// dict = ["leet", "code"].
+// Return true because "leetcode" can be segmented as "leet code".
+// 对背包的迭代放在外层，只有这样才能让物品按一定顺序放入背包中。
+
+// public boolean wordBreak(String s, List<String> wordDict) {
+//     int n = s.length();
+//     boolean[] dp = new boolean[n + 1];
+//     dp[0] = true;
+//     for (int i = 1; i <= n; i++) {
+//         for (String word : wordDict) {
+// 对物品的迭代应该放在最里层
+//             int len = word.length();
+//             if (len <= i && word.equals(s.substring(i - len, i))) {
+//                 dp[i] = dp[i] || dp[i - len];
+//             }
+//         }
+//     }
+//     return dp[n];
+// }
