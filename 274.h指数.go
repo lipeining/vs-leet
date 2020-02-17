@@ -12,20 +12,28 @@ func hIndex(citations []int) int {
 	}
 	// [100]: 1 [11, 15]: 2
 	sort.Ints(citations)
-	ans := 0
-	if citations[length-1] > 0 {
-		ans = 1
-	}
-	for i:=length-1;i>=0;i-- {
-		has := length-i
-		if has >= citations[i] {
-			if ans < citations[i] {
-				ans = citations[i]
-			}
-		}
-	}
+	// ans := 0
+	// if citations[length-1] > 0 {
+	// 	ans = 1
+	// }
+	// for i:=length-1;i>=0;i-- {
+	// 	has := length-i-1
+	// 	if has >= citations[i] {
+	// 		if ans < citations[i] {
+	// 			ans = citations[i]
+	// 		}
+	// 	}
+	// }
+	// return ans
 	fmt.Println(citations)
-	return ans
+	i := 0
+	for i < length {
+		if citations[length-i-1] < i {
+			break
+		}
+		i++
+	}
+	return i
 }
 // @lc code=end
 
