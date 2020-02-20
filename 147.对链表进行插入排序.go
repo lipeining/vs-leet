@@ -1,3 +1,5 @@
+import "fmt"
+
 /*
  * @lc app=leetcode.cn id=147 lang=golang
  *
@@ -16,19 +18,19 @@ func insertionSortList(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
-	fmt.Println(head)
+	// fmt.Println(head)
 	// return head
 	p := head.Next
-	fakeHead := &ListNode{Val :head.Val}
+	fakeHead := &ListNode{Val: head.Val}
 	h := &ListNode{-1, fakeHead}
 	// 还是有一个假的头结点比较简单
-	for p!=nil {
+	for p != nil {
 		t := h
 		for t.Next != nil && t.Next.Val < p.Val {
-			t = t.Next 
+			t = t.Next
 		}
 		oriNext := p.Next
-		// 
+		//
 		tNext := t.Next
 		t.Next = p
 		p.Next = tNext
@@ -37,5 +39,5 @@ func insertionSortList(head *ListNode) *ListNode {
 	}
 	return h.Next
 }
-// @lc code=end
 
+// @lc code=end

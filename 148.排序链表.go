@@ -12,6 +12,7 @@
  *     Next *ListNode
  * }
  */
+//  https://leetcode-cn.com/problems/sort-list/solution/sort-list-gui-bing-pai-xu-lian-biao-by-jyd/
 func sortList(head *ListNode) *ListNode {
 	// merge sort
 	if head == nil || head.Next == nil {
