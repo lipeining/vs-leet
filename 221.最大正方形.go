@@ -16,7 +16,7 @@ func maximalSquare(matrix [][]byte) int {
 	if n == 0 {
 		return 0
 	}
-	// dp[i][j] = dp[i-1][j] dp[i][j-1] dp[i-1][j-1
+	// dp[i][j] = dp[i-1][j] dp[i][j-1] dp[i-1][j-1]
 	dp := make([][]int, m)
 	for i := 0; i < m; i++ {
 		dp[i] = make([]int, n)

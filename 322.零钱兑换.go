@@ -1,3 +1,5 @@
+import "math"
+
 /*
  * @lc app=leetcode.cn id=322 lang=golang
  *
@@ -5,6 +7,12 @@
  */
 
 // @lc code=start
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
 func coinChange(coins []int, amount int) int {
 	if amount < 0 {
 		return -1
@@ -16,29 +24,55 @@ func coinChange(coins []int, amount int) int {
 		return -1
 	}
 
-	// 正确解答：2
 	dp := make([]int, amount+1)
-	for j := 1; j <= amount; j++ {
-		min := 2 * amount
-		for i := 0; i < len(coins); i++ {
-			coin := coins[i]
-			if coin > j {
-				continue
+	for i := 1; i <= amount; i++ {
+		dp[i] = math.MaxInt32
+	}
+	for i := 1; i <= amount; i++ {
+		for j := 0; j < len(coins); j++ {
+			coin := coins[j]
+			if coin <= i {
+				dp[i] = min(dp[i], dp[i-coin]+1)
 			}
-			if dp[j-coin] == -1 {
-				continue
-			}
-			if min > dp[j-coin]+1 {
-				min = dp[j-coin] + 1
-			}
-		}
-		if min == 2*amount {
-			dp[j] = -1
-		} else {
-			dp[j] = min
 		}
 	}
+	if dp[amount] == math.MaxInt32 {
+		return -1
+	}
 	return dp[amount]
+	// if amount < 0 {
+	// 	return -1
+	// }
+	// if amount == 0 {
+	// 	return 0
+	// }
+	// if len(coins) == 0 {
+	// 	return -1
+	// }
+
+	// // 正确解答：2
+	// dp := make([]int, amount+1)
+	// for j := 1; j <= amount; j++ {
+	// 	min := 2 * amount
+	// 	for i := 0; i < len(coins); i++ {
+	// 		coin := coins[i]
+	// 		if coin > j {
+	// 			continue
+	// 		}
+	// 		if dp[j-coin] == -1 {
+	// 			continue
+	// 		}
+	// 		if min > dp[j-coin]+1 {
+	// 			min = dp[j-coin] + 1
+	// 		}
+	// 	}
+	// 	if min == 2*amount {
+	// 		dp[j] = -1
+	// 	} else {
+	// 		dp[j] = min
+	// 	}
+	// }
+	// return dp[amount]
 
 	// 正确解答：1
 	// dp := make([]int, amount+1)
