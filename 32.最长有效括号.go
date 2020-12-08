@@ -3,7 +3,7 @@
  *
  * [32] 最长有效括号
  */
-package main
+// package main
 
 // func main() {
 // 	longestValidParentheses(")()())")

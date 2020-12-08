@@ -7,12 +7,13 @@
 // @lc code=start
 func integerBreak(n int) int {
 	dp := make([]int, n+1)
-	dp[0] = 1
-	dp[1] = 1
-	dp[2] = 1
+	// dp[0] = 1
+	// dp[1] = 1
+	// dp[2] = 1
 	for i := 2; i <= n; i++ {
 		for j := 1; j < i; j++ {
-			dp[i] = max(dp[i], max3(dp[i-j]*dp[j], dp[i-j]*j, (i-j)*j))
+			// dp[i] = max(dp[i], max3(dp[i-j]*dp[j], dp[i-j]*j, (i-j)*j))
+			dp[i] = max(dp[i], max(dp[i-j]*j, (i-j)*j))
 		}
 		// should := dp[i]
 		// for j := 1; j <= i; j++ {

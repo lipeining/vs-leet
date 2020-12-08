@@ -1,10 +1,15 @@
-import "fmt"
-
 /*
  * @lc app=leetcode.cn id=474 lang=golang
  *
  * [474] 一和零
  */
+package main
+
+import "fmt"
+
+// func main() {
+// 	findMaxForm([]string{"10", "0", "1"}, 1, 1)
+// }
 
 // @lc code=start
 func findMaxForm(strs []string, m int, n int) int {
@@ -24,6 +29,7 @@ func findMaxForm(strs []string, m int, n int) int {
 		}
 		list[i] = []int{z, o}
 	}
+	// fmt.Println(list)
 	dp := make([][]int, m+1)
 	for i := 0; i <= m; i++ {
 		dp[i] = make([]int, n+1)
@@ -33,8 +39,8 @@ func findMaxForm(strs []string, m int, n int) int {
 	//  同时，应该 strs 放在外层
 	for k := 0; k < len(strs); k++ {
 		z, o := list[k][0], list[k][1]
-		for i := m; i >= 1; i-- {
-			for j := n; j >= 1; j-- {
+		for i := m; i >= 0; i-- {
+			for j := n; j >= 0; j-- {
 				if i >= z && j >= o {
 					dp[i][j] = max(dp[i][j], dp[i-z][j-o]+1)
 				} else {
@@ -89,11 +95,11 @@ func findMaxForm(strs []string, m int, n int) int {
 	// 	}
 	// }
 }
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
+// func max(a, b int) int {
+// 	if a > b {
+// 		return a
+// 	}
+// 	return b
+// }
 
 // @lc code=end
