@@ -3,6 +3,14 @@
  *
  * [516] 最长回文子序列
  */
+package main
+
+import "fmt"
+
+// func main() {
+// 	longestPalindromeSubseq("bbbab")
+// 	longestPalindromeSubseq("bbbaab")
+// }
 
 // @lc code=start
 func longestPalindromeSubseq(s string) int {
@@ -12,10 +20,17 @@ func longestPalindromeSubseq(s string) int {
 		dp[i] = make([]int, n)
 		dp[i][i] = 1
 	}
-	// 抄别人的答案
-	for l := 1; l < n; l++ {
-		for i := 0; i < n-l; i++ {
-			j := i + l
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+		return b
+	}
+	// 当我知道 dp[i][i] 的特殊情况时，
+	// 应该使用 填写表格 的方式，
+	// 判断 dp[i][j] 与旁边的单元格的关系 只和 +1， -1 或者多个有关。
+	for i := n - 1; i >= 0; i-- {
+		for j := i + 1; j < n; j++ {
 			if s[i] == s[j] {
 				dp[i][j] = dp[i+1][j-1] + 2
 			} else {
@@ -23,13 +38,9 @@ func longestPalindromeSubseq(s string) int {
 			}
 		}
 	}
-	return dp[0][n-1]
-}
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+	ans := dp[0][n-1]
+	fmt.Println("ans", ans)
+	return ans
 }
 
 // @lc code=end

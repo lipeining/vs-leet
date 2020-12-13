@@ -6,6 +6,31 @@
 
 // @lc code=start
 func calculateMinimumHP(dungeon [][]int) int {
+	m := len(dungeon)
+	if m == 0 {
+		return 1
+	}
+	n := len(dungeon[0])
+	if n == 0 {
+		return 1
+	}
+	dp := make([][]int, m+1)
+	for i := 0; i <= m; i++ {
+		dp[i] = make([]int, n+1)
+		for j := 0; j <= n; j++ {
+			dp[i][j] = math.MaxInt32
+		}
+	}
+	dp[m][n-1] = 1
+	dp[m-1][n] = 1
+	for i := m - 1; i >= 0; i-- {
+		for j := n - 1; j >= 0; j-- {
+			dp[i][j] = max(1, min(dp[i+1][j], dp[i][j+1])-dungeon[i][j])
+		}
+	}
+	return dp[0][0]
+}
+func calculateMinimumHP2(dungeon [][]int) int {
 	// 自底向上的算法，从右下角开始
 	// 自顶向下的算法，从左上角开始
 	m := len(dungeon)

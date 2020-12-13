@@ -3,7 +3,11 @@
  *
  * [120] 三角形最小路径和
  */
+// package main
 
+// func main() {
+
+// }
 // @lc code=start
 func minimumTotal(triangle [][]int) int {
 	m := len(triangle)
@@ -11,6 +15,28 @@ func minimumTotal(triangle [][]int) int {
 		return 0
 	}
 	n := len(triangle[m-1])
+	dp := make([]int, n)
+	for i := 0; i < n; i++ {
+		for j := len(triangle[i]) - 1; j >= 0; j-- {
+			if j == 0 {
+				dp[j] += triangle[i][j]
+				continue
+			}
+			if j == len(triangle[i])-1 {
+				dp[j] = dp[j-1] + triangle[i][j]
+				continue
+			}
+			dp[j] = min(dp[j-1], dp[j]) + triangle[i][j]
+		}
+		// fmt.Println(dp)
+	}
+	ans := math.MaxInt32
+	for j := 0; j < n; j++ {
+		if ans > dp[j] {
+			ans = dp[j]
+		}
+	}
+	return ans
 	// 2
 	// 3 4
 	// 6 5 7

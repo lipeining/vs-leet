@@ -11,13 +11,13 @@ func partitionLabels(S string) []int {
 	for i := 0; i < length; i++ {
 		last[S[i]-'a'] = i
 	}
-	j, anchor := 0, 0
+	start, end := 0, 0
 	ans := make([]int, 0)
 	for i := 0; i < length; i++ {
-		j = max(j, last[S[i]-'a'])
-		if i == j {
-			ans = append(ans, i-anchor+1)
-			anchor = i + 1
+		end = max(end, last[S[i]-'a'])
+		if i == end {
+			ans = append(ans, end-start+1)
+			start = end + 1
 		}
 	}
 	return ans
