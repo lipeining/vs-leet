@@ -16,7 +16,7 @@ import "fmt"
  */
 func binaryTreePaths(root *TreeNode) []string {
 	res := make([]string, 0)
-    if root == nil {
+	if root == nil {
 		return res
 	}
 	var dfs func(root *TreeNode, path string)

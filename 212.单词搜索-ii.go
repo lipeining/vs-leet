@@ -7,16 +7,16 @@ package main
 
 import "fmt"
 
-func main() {
-	// 	输入：board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
-	// 输出：["eat","oath"]
-	// 输入：board = [["a","b"],["c","d"]], words = ["abcb"]
-	// 输出：[]
-	findWords([][]byte{{'o', 'a', 'a', 'n'}, {'e', 't', 'a', 'e'}, {'i', 'h', 'k', 'r'}, {'i', 'f', 'l', 'v'}},
-		[]string{"oath", "pea", "eat", "rain"})
-	findWords([][]byte{{'a', 'b'}, {'c', 'd'}}, []string{"abcb"})
-	findWords([][]byte{{'a', 'a'}}, []string{"a"})
-}
+// func main() {
+// 	// 	输入：board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
+// 	// 输出：["eat","oath"]
+// 	// 输入：board = [["a","b"],["c","d"]], words = ["abcb"]
+// 	// 输出：[]
+// 	findWords([][]byte{{'o', 'a', 'a', 'n'}, {'e', 't', 'a', 'e'}, {'i', 'h', 'k', 'r'}, {'i', 'f', 'l', 'v'}},
+// 		[]string{"oath", "pea", "eat", "rain"})
+// 	findWords([][]byte{{'a', 'b'}, {'c', 'd'}}, []string{"abcb"})
+// 	findWords([][]byte{{'a', 'a'}}, []string{"a"})
+// }
 
 // @lc code=start
 func findWords(board [][]byte, words []string) []string {

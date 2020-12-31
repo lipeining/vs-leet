@@ -28,8 +28,17 @@ func coinChange(coins []int, amount int) int {
 	for i := 1; i <= amount; i++ {
 		dp[i] = math.MaxInt32
 	}
-	for i := 1; i <= amount; i++ {
-		for j := 0; j < len(coins); j++ {
+	// for i := 1; i <= amount; i++ {
+	// 	for j := 0; j < len(coins); j++ {
+	// 		coin := coins[j]
+	// 		if coin <= i {
+	// 			dp[i] = min(dp[i], dp[i-coin]+1)
+	// 		}
+	// 	}
+	// }
+
+	for j := 0; j < len(coins); j++ {
+		for i := 1; i <= amount; i++ {
 			coin := coins[j]
 			if coin <= i {
 				dp[i] = min(dp[i], dp[i-coin]+1)

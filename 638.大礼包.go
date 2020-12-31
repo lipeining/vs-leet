@@ -6,15 +6,18 @@
 
 // @lc code=start
 func shoppingOffers(price []int, special [][]int, needs []int) int {
+
+}
+func shoppingOffersDFS(price []int, special [][]int, needs []int) int {
 	var dfs func(price []int, special [][]int, needs []int) int
 	dfs = func(price []int, special [][]int, needs []int) int {
 		res := dot(price, needs)
-		for i:=0;i<len(special);i++ {
+		for i := 0; i < len(special); i++ {
 			nextNeeds := make([]int, len(needs))
 			copy(nextNeeds, needs)
-			j:=0
-			for j<len(nextNeeds) {
-				diff := nextNeeds[j]-special[i][j]
+			j := 0
+			for j < len(nextNeeds) {
+				diff := nextNeeds[j] - special[i][j]
 				if diff < 0 {
 					break
 				}
@@ -23,7 +26,7 @@ func shoppingOffers(price []int, special [][]int, needs []int) int {
 			}
 			if j == len(nextNeeds) {
 				nextSum := dfs(price, special, nextNeeds)
-				if res > nextSum + special[i][j] {
+				if res > nextSum+special[i][j] {
 					res = nextSum + special[i][j]
 				}
 			}
@@ -34,8 +37,8 @@ func shoppingOffers(price []int, special [][]int, needs []int) int {
 }
 func dot(price []int, needs []int) int {
 	sum := 0
-	for i:=0;i<len(price);i++ {
-		sum += price[i]*needs[i]
+	for i := 0; i < len(price); i++ {
+		sum += price[i] * needs[i]
 	}
 	return sum
 }
