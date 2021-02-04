@@ -7,11 +7,11 @@ package main
 
 import "fmt"
 
-func main() {
-	// checkRecord(1)
-	// checkRecord(2)
-	checkRecord(3) // 19
-}
+// func main() {
+// 	// checkRecord(1)
+// 	// checkRecord(2)
+// 	checkRecord(3) // 19
+// }
 
 // @lc code=start
 func checkRecord(n int) int {

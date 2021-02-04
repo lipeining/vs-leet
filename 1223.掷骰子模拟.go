@@ -38,7 +38,7 @@ func dieSimulator(n int, rollMax []int) int {
 		}
 	}
 	ans := 0
-	for i := 0; i < 6; i++ {
+	for i := 1; i <= 6; i++ {
 		for j := 1; j <= 15; j++ {
 			ans = (ans + dp[n][i][j]) % mod
 		}

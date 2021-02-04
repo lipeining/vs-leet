@@ -11,9 +11,9 @@ func numRollsToTarget(d int, f int, target int) int {
 	for i := 1; i <= f && i <= target; i++ {
 		dp[1][i] = 1
 	}
-	targetMax := d * f
+	// targetMax := d * f
 	for i := 2; i <= d; i++ {
-		for j := i; j <= targetMax; j++ {
+		for j := i; j <= target; j++ {
 			for k := 1; k <= f && k <= j; k++ {
 				dp[i][j] = (dp[i][j] + dp[i-1][j-k]) % toMod
 			}

@@ -1,5 +1,10 @@
 package template
 
+// 总结
+// https://leetcode-cn.com/problems/profitable-schemes/solution/leetcode-01bei-bao-zong-jie-by-pedantic-einstein/
+// 最优解一般模板为dp[i][j]=max(dp[i-1][j],dp[i-1][j-w[i]]+v[i])，
+// 空间压缩后为dp[j]=max(dp[j],dp[j-w[i]]+v[i])。
+
 func canPartition(nums []int) bool {
 	// 背包问题
 	sum := 0

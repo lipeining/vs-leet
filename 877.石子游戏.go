@@ -6,32 +6,49 @@
 
 // @lc code=start
 func stoneGame(piles []int) bool {
-	N := len(piles)
-	dp := make([][]int, N+2)
-	for i := 0; i < len(dp); i++ {
-		dp[i] = make([]int, N+2)
+	n := len(piles)
+	dp := make([]int, n)
+	for i := 0; i < n; i++ {
+		dp[i] = piles[i]
 	}
-	for size := 1; size <= N; size++ {
-		for i := 0; i+size <= N; i++ {
-			j := i + size - 1
-			parity := (j + i + N) % 2
-			if parity == 1 {
-				max := piles[i] + dp[i+2][j+1]
-				if max < piles[j]+dp[i+1][j] {
-					max = piles[j] + dp[i+1][j]
-				}
-				dp[i+1][j+1] = max
-			} else {
-				min := -piles[i] + dp[i+2][j+1]
-				if min > (-piles[j] + dp[i+1][j]) {
-					min = (-piles[j] + dp[i+1][j])
-				}
-				dp[i+1][j+1] = min
-
-			}
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+		return b
+	}
+	for i := n - 2; i >= 0; i-- {
+		for j := i + 1; j < n; j++ {
+			dp[j] = max(piles[i]-dp[j], piles[j]-dp[j-1])
 		}
 	}
-	return dp[1][N] > 0
+	return dp[n-1] > 0
+	// N := len(piles)
+	// dp := make([][]int, N+2)
+	// for i := 0; i < len(dp); i++ {
+	// 	dp[i] = make([]int, N+2)
+	// }
+	// for size := 1; size <= N; size++ {
+	// 	for i := 0; i+size <= N; i++ {
+	// 		j := i + size - 1
+	// 		parity := (j + i + N) % 2
+	// 		if parity == 1 {
+	// 			max := piles[i] + dp[i+2][j+1]
+	// 			if max < piles[j]+dp[i+1][j] {
+	// 				max = piles[j] + dp[i+1][j]
+	// 			}
+	// 			dp[i+1][j+1] = max
+	// 		} else {
+	// 			min := -piles[i] + dp[i+2][j+1]
+	// 			if min > (-piles[j] + dp[i+1][j]) {
+	// 				min = (-piles[j] + dp[i+1][j])
+	// 			}
+	// 			dp[i+1][j+1] = min
+
+	// 		}
+	// 	}
+	// }
+	// return dp[1][N] > 0
 }
 
 // @lc code=end

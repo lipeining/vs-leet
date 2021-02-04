@@ -1,19 +1,24 @@
-import (
-	"fmt"
-	"math"
-)
-
 /*
  * @lc app=leetcode.cn id=983 lang=golang
  *
  * [983] 最低票价
  */
+package main
 
-// @lc code=start
+import (
+	"math"
+)
+
 func mincostTickets(days []int, costs []int) int {
 	length := len(days)
 	target := days[length-1]
 	dp := make([]int, target+1)
+	min := func(a, b int) int {
+		if a < b {
+			return a
+		}
+		return b
+	}
 	for i := 1; i <= target; i++ {
 		dp[i] = -1
 	}
@@ -41,11 +46,12 @@ func mincostTickets(days []int, costs []int) int {
 	// fmt.Println(dp)
 	return dp[target]
 }
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
+
+// func min(a, b int) int {
+// 	if a < b {
+// 		return a
+// 	}
+// 	return b
+// }
 
 // @lc code=end
