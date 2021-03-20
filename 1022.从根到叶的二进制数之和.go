@@ -14,6 +14,24 @@
  * }
  */
 func sumRootToLeaf(root *TreeNode) int {
+	sum := 0
+	var dfs func(node *TreeNode, val int)
+	dfs = func(node *TreeNode, val int) {
+		if node == nil {
+			return
+		}
+		next := val << 1 | node.Val
+		if node.Left == nil && node.Right == nil {
+			sum += next
+		} else {
+			dfs(node.Left, next)
+			dfs(node.Right, next)
+		}
+	}
+	dfs(root, 0)
+	return sum % int(1e9+7)
+}
+func sumRootToLeaf2(root *TreeNode) int {
 	ans := 0
 	var dfs func(root *TreeNode, path []int)
 	dfs = func(root *TreeNode, path []int) {

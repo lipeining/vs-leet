@@ -13,10 +13,11 @@ func countArrangement(N int) int {
 			ans++
 			return
 		}
-		for i:=1;i<=N;i++ {
+		for i := 1; i <= N; i++ {
 			if used[i] {
 				continue
 			}
+			// now 是第几个位置的意思
 			index := now + 1
 			if check(index, i) {
 				used[i] = true
@@ -30,7 +31,8 @@ func countArrangement(N int) int {
 	return ans
 }
 func check(a int, b int) bool {
-	return a%b==0 || b%a==0
+	return a%b == 0 || b%a == 0
 }
+
 // @lc code=end
 

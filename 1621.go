@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 // func main() {
-// 	solve(4, 2) //5
-// 	// solve(3, 1)  //3
-// 	// solve(30, 7) // 796297179
-// 	// solve(5, 3)  //7
-// 	// solve(3, 2)  //1
+	// solve(4, 2) //5
+	// solve(3, 1)  //3
+	// solve(30, 7) // 796297179
+	// solve(5, 3)  //7
+	// solve(3, 2)  //1
 // }
 
 func solve(n int, k int) int {

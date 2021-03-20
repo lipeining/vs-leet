@@ -58,4 +58,11 @@ function test() {
     minSetSize(arr)
 }
 
-test()
+// test()
+
+function num() {
+    const i = 5;
+    const j = 10;
+    console.log(i,j,~j);
+}
+num();
