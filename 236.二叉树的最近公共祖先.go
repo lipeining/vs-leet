@@ -13,7 +13,24 @@
  *     Right *ListNode
  * }
  */
- func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+	if root == nil {
+		return root
+	}
+	if root == p || root == q {
+		return root
+	}
+	left := lowestCommonAncestor(root.Left, p, q)
+	right := lowestCommonAncestor(root.Right, p, q)
+	if left != nil && right != nil {
+		return root
+	}
+	if left == nil {
+		return right
+	}
+	return left
+}
+func lowestCommonAncestorN(root, p, q *TreeNode) *TreeNode {
 	var ans *TreeNode
 	var dfs func(root, p, q *TreeNode) int
 	dfs = func(root, p, q *TreeNode) int {
@@ -26,10 +43,10 @@
 		if root == p || root == q {
 			mid = 1
 		}
-		if left + right + mid >= 2 {
+		if left+right+mid >= 2 {
 			ans = root
 		}
-		if left + right + mid > 0 {
+		if left+right+mid > 0 {
 			return 1
 		}
 		return 0
@@ -37,5 +54,6 @@
 	dfs(root, p, q)
 	return ans
 }
+
 // @lc code=end
 

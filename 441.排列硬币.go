@@ -7,14 +7,15 @@
 // @lc code=start
 func arrangeCoins(n int) int {
 	i := 1
-    for  n > 0{
+	for n > 0 {
 		n -= i
 		i++
 	}
 	if n == 0 {
-		return i-1
+		return i - 1
 	}
-	return i-2
+	return i - 2
 }
+
 // @lc code=end
 

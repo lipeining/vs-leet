@@ -14,22 +14,28 @@
  * }
  */
 func diameterOfBinaryTree(root *TreeNode) int {
-	max := 1
-	var depth func(root *TreeNode)int 
-	depth = func(root *TreeNode)int {
+	ans := 1
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+		return b
+	}
+	var depth func(root *TreeNode) int
+	depth = func(root *TreeNode) int {
 		if root == nil {
 			return 0
 		}
 		L := depth(root.Left)
 		R := depth(root.Right)
-		tmp := L+R+1
-		if tmp > max {
-			max = tmp
+		tmp := L + R + 1
+		if tmp > ans {
+			ans = tmp
 		}
-		return 1 + int(math.Max(float64(L),float64(R)))
+		return 1 + max(L, R)
 	}
 	depth(root)
-	return max-1
+	return ans - 1
 }
 
 // @lc code=end

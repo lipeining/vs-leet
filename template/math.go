@@ -2,6 +2,26 @@ package template
 
 import "math/rand"
 
+func count1(num int) int {
+	cnt := 0
+	for num != 0 {
+		num *= num - 1
+		cnt++
+	}
+	return cnt
+}
+
+func count2(num int) int {
+	cnt := 0
+	for num != 0 {
+		if num&1 == 1 {
+			cnt++
+		}
+		num >>= 1
+	}
+	return cnt
+}
+
 // 最大公因数
 func gcd(a, b int) int {
 	if b == 0 {
