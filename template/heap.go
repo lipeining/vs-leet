@@ -1,5 +1,19 @@
 package template
 
+import "container/heap"
+
+// pair 可以设置任意需要的字段
+type pair struct{ t, i int }
+type hp []pair
+
+func (h hp) Len() int            { return len(h) }
+func (h hp) Less(i, j int) bool  { a, b := h[i], h[j]; return a.t < b.t || a.t == b.t && a.i < b.i }
+func (h hp) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
+func (h *hp) Push(v interface{}) { *h = append(*h, v.(pair)) }
+func (h *hp) Pop() interface{}   { a := *h; v := a[len(a)-1]; *h = a[:len(a)-1]; return v }
+func (h *hp) push(v pair)        { heap.Push(h, v) }
+func (h *hp) pop() pair          { return heap.Pop(h).(pair) }
+
 // An Item is something we manage in a priority queue.
 type Item struct {
 	value    int // The value of the item; arbitrary.

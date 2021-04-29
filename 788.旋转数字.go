@@ -19,7 +19,7 @@ func helper(n int, flag bool) bool {
 		return flag
 	}
 	str := n%10
-	if str == 1 || str==4 || str==7 {
+	if str == 3 || str==4 || str==7 {
 		return false
 	} else if str == 0 || str == 1 || str == 8{
 		return helper(n/10, flag)

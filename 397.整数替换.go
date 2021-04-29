@@ -6,32 +6,19 @@
 
 // @lc code=start
 func integerReplacement(n int) int {
-	memo := make(map[int]int)
-	memo[1] = 0
-	min := func(a, b int) int {
-		if a < b {
-			return a
-		}
-		return b
+	if n == math.MaxInt32 {
+		return 32
 	}
-	var dfs func(num int) int
-	dfs = func(num int) int {
-		if cnt, ok := memo[num]; ok {
-			return cnt
-		}
-		if n%2 == 0 {
-			need := 1 + dfs(num/2)
-			memo[num] = need
-			return need
-		}
-		sub := dfs(num - 1)
-		plus := dfs(num + 1)
-		need := min(plus, sub) + 1
-		memo[num] = need
-		return need
+	if n <= 3 {
+		return n - 1
 	}
-	ans := dfs(n)
-	return ans
+	if n%2 == 0 {
+		return integerReplacement(n/2) + 1
+	}
+	if n%2 == 0 {
+		return integerReplacement(n-1) + 1
+	}
+	return integerReplacement(n+1) + 1
 }
 
 // @lc code=end
