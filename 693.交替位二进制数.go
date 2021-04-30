@@ -6,20 +6,34 @@
 
 // @lc code=start
 func hasAlternatingBits(n int) bool {
-	before := 0 
-	if n % 2 ==0 {
-		before = 1
-	}
+	prev := -1
 	for n != 0 {
-		m := n % 2
-		n = n / 2
-		if before == m {
-			return false
+		now := n & 1
+		if prev == -1 {
+			prev = now
 		} else {
-			before = m
+			if prev == now {
+				return false
+			}
+			prev = now
 		}
+		n >>= 1
 	}
 	return true
+	// before := 0 
+	// if n % 2 ==0 {
+	// 	before = 1
+	// }
+	// for n != 0 {
+	// 	m := n % 2
+	// 	n = n / 2
+	// 	if before == m {
+	// 		return false
+	// 	} else {
+	// 		before = m
+	// 	}
+	// }
+	// return true
 }
 // @lc code=end
 
