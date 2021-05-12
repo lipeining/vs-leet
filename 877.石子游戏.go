@@ -7,6 +7,36 @@
 // @lc code=start
 func stoneGame(piles []int) bool {
 	n := len(piles)
+	memo := make([][]int, n)
+	for i := 0; i < n; i++ {
+		memo[i] = make([]int, n)
+		for j := 0; j < n; j++ {
+			memo[i][j] = math.MinInt32
+		}
+	}
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+		return b
+	}
+	var dfs func(l, r int) int
+	dfs = func(l, r int) int {
+		if l == r {
+			return piles[l]
+		}
+		if memo[l][r] != math.MinInt32 {
+			return memo[l][r]
+		}
+		left := piles[l] - dfs(l+1, r)
+		right := piles[r] - dfs(l, r-1)
+		memo[l][r] = max(left, right)
+		return memo[l][r]
+	}
+	return dfs(0, n-1) >= 0
+}
+func stoneGameDP(piles []int) bool {
+	n := len(piles)
 	dp := make([]int, n)
 	for i := 0; i < n; i++ {
 		dp[i] = piles[i]

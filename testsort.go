@@ -32,9 +32,9 @@ func qsort(arr []int) {
 	fmt.Println("after ", arr)
 }
 
-func main() {
-	// qsort([]int{1, 2, 3, 4, 5, 6, 7})
-	// qsort([]int{1, 2, 3, 4, 5, 5, 6, 7})
-	qsort([]int{7, 6, 6, 5, 5, 4, 1, 2, 3})
-	// qsort([]int{7, 6, 8, 5, 5, 4, 1, 2, 3})
-}
+// func main() {
+// 	// qsort([]int{1, 2, 3, 4, 5, 6, 7})
+// 	// qsort([]int{1, 2, 3, 4, 5, 5, 6, 7})
+// 	qsort([]int{7, 6, 6, 5, 5, 4, 1, 2, 3})
+// 	// qsort([]int{7, 6, 8, 5, 5, 4, 1, 2, 3})
+// }

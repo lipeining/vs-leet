@@ -14,7 +14,7 @@
  * }
  */
 func leafSimilar(root1 *TreeNode, root2 *TreeNode) bool {
-    if root1 == nil && root2 == nil {
+	if root1 == nil && root2 == nil {
 		return true
 	}
 	l := inorder(root1)
@@ -22,8 +22,8 @@ func leafSimilar(root1 *TreeNode, root2 *TreeNode) bool {
 	if len(l) != len(r) {
 		return false
 	}
-	for i:=0;i<len(l);i++{
-		if l[i]!=r[i] {
+	for i := 0; i < len(l); i++ {
+		if l[i] != r[i] {
 			return false
 		}
 	}
@@ -31,7 +31,7 @@ func leafSimilar(root1 *TreeNode, root2 *TreeNode) bool {
 }
 func inorder(root *TreeNode) []int {
 	ans := make([]int, 0)
-	var helper func(root *TreeNode) 
+	var helper func(root *TreeNode)
 	helper = func(root *TreeNode) {
 		if root == nil {
 			return
@@ -48,5 +48,6 @@ func inorder(root *TreeNode) []int {
 func isLeaf(t *TreeNode) bool {
 	return t.Left == nil && t.Right == nil
 }
+
 // @lc code=end
 

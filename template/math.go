@@ -74,6 +74,35 @@ func countPrime(n int) int {
 	return count
 }
 
+func initComb(n int) [][]int {
+	MOD := int(1e9 + 7)
+	comb := make([][]int, n+1)
+	for i := 0; i <= n; i++ {
+		comb[i] = make([]int, n+1)
+	}
+	comb[0][0] = 1
+	for i := 1; i <= n; i++ {
+		comb[i][0] = 1
+		comb[i][i] = 1
+		for j := 1; j < i; j++ {
+			comb[i][j] = (comb[i-1][j-1] + comb[i-1][j]) % MOD
+		}
+	}
+	return comb
+}
+func getComb(n, m int) int {
+	if n == 0 {
+		return 1
+	}
+	if n == 0 {
+		return 1
+	}
+	if m > n {
+		return 1
+	}
+	return initComb(n)[n][m]
+}
+
 type ShuffleHelper struct {
 	origin []int
 }

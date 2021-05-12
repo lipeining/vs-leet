@@ -14,6 +14,28 @@ import "math"
  * }
  */
 func minDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	if root.Left == nil && root.Right == nil {
+		return 1
+	}
+	want := math.MaxInt32
+	if root.Left != nil {
+		left := minDepth(root.Left)
+		if want > left {
+			want = left
+		}
+	}
+	if root.Right != nil {
+		right := minDepth(root.Right)
+		if want > right {
+			want = right
+		}
+	}
+	return 1 + want
+}
+func minDepthOld(root *TreeNode) int {
     if root == nil {
 		return 0
 	}
