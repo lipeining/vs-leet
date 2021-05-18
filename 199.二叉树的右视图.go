@@ -14,6 +14,29 @@
  * }
  */
 func rightSideView(root *TreeNode) []int {
+	ans := make([]int, 0)
+	if root == nil {
+		return ans
+	}
+	var dfs func(node *TreeNode, depth int)
+	dfs = func(node *TreeNode, depth int) {
+		if node == nil {
+			return
+		}
+		size := len(ans)
+		if size < depth+1 {
+			// insert
+			ans = append(ans, node.Val)
+		} else {
+			ans[depth] = node.Val
+		}
+		dfs(node.Left, depth+1)
+		dfs(node.Right, depth+1)
+	}
+	dfs(root, 0)
+	return ans
+}
+func rightSideViewBFS(root *TreeNode) []int {
 	// 只看到最右侧的节点
 	// bfs 最简单，取 length-1 即可，然后继续下去
 
@@ -25,7 +48,7 @@ func rightSideView(root *TreeNode) []int {
 	queue = append(queue, root)
 	for len(queue) != 0 {
 		length := len(queue)
-		for i:=0;i<length;i++ {
+		for i := 0; i < length; i++ {
 			t := queue[i]
 			if t.Left != nil {
 				queue = append(queue, t.Left)
@@ -40,5 +63,6 @@ func rightSideView(root *TreeNode) []int {
 	}
 	return ans
 }
+
 // @lc code=end
 

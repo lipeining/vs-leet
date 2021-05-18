@@ -3,6 +3,7 @@
  *
  * [100] 相同的树
  */
+package main
 
 // @lc code=start
 /**
@@ -14,15 +15,18 @@
  * }
  */
 func isSameTree(p *TreeNode, q *TreeNode) bool {
-    if p == nil && q != nil {
+	if p == nil && q != nil {
 		return false
 	} else if p != nil && q == nil {
 		return false
 	} else if p == nil && q == nil {
 		return true
 	} else {
-		return p.Val == q.Val && isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
+		if p.Val != q.Val {
+			return false
+		}
+		return isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
 	}
 }
-// @lc code=end
 
+// @lc code=end

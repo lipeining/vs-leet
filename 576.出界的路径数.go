@@ -3,9 +3,84 @@
  *
  * [576] 出界的路径数
  */
+package main
+
+import "fmt"
+
+// func main() {
+// 	findPaths(2, 2, 2, 0, 0)
+// 	findPaths(1, 3, 3, 0, 1)
+// }
 
 // @lc code=start
 func findPaths(m int, n int, N int, i int, j int) int {
+	// 在坐标 i,j 时移动 k 次可以出界的数量
+	memo := make([][][]int, m)
+	for i := 0; i < m; i++ {
+		memo[i] = make([][]int, n)
+		for j := 0; j < n; j++ {
+			memo[i][j] = make([]int, N+1)
+			for k := 0; k <= N; k++ {
+				// memo[i][j][k] = -1
+			}
+		}
+	}
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if i == 0 {
+				memo[i][j][1]++
+			}
+			if i == m-1 {
+				memo[i][j][1]++
+			}
+			if j == 0 {
+				memo[i][j][1]++
+			}
+			if j == n-1 {
+				memo[i][j][1]++
+			}
+		}
+	}
+	fmt.Println("init", memo)
+	mod := int(1e9 + 7)
+	dirs := [][]int{
+		{-1, 0},
+		{1, 0},
+		{0, -1},
+		{0, 1},
+	}
+	var dfs func(x, y, k int) int
+	dfs = func(x, y, k int) int {
+		if k <= 0 {
+			return 0
+		}
+		if x < 0 || x == m || y < 0 || y >= n {
+			fmt.Println("edge")
+			return 0
+		}
+		if memo[x][y][k] > 0 {
+			fmt.Println("memo", x, y, k)
+			return memo[x][y][k]
+		}
+		// 1.移动到相邻的位置
+		// 2.直接出界
+		now := 0
+		for _, dir := range dirs {
+			ni := x + dir[0]
+			nj := y + dir[1]
+			now += dfs(ni, nj, k-1)
+			now %= mod
+		}
+		memo[x][y][k] = now
+		fmt.Println("dfs", x, y, k, now)
+		return now
+	}
+
+	ans := dfs(i, j, N)
+	fmt.Println("anssssss", ans)
+	return ans
+}
+func findPathsDP(m int, n int, N int, i int, j int) int {
 	if N == 0 {
 		return 0
 	}

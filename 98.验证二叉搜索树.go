@@ -14,6 +14,24 @@
  * }
  */
 func isValidBST(root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+	var dfs func(node *TreeNode, up, down int) bool
+	dfs = func(node *TreeNode, up, down int) bool {
+		if node == nil {
+			return true
+		}
+		if node.Val <= down || node.Val >= up {
+			return false
+		}
+		l := dfs(node.Left, node.Val, down)
+		r := dfs(node.Right, up, node.Val)
+		return l && r
+	}
+	return dfs(root, math.MaxInt64, math.MinInt64)
+}
+func isValidBSTInorder(root *TreeNode) bool {
 	// 中序遍历水一下先
 	prev := math.MaxInt64
 	ans := true
@@ -52,5 +70,6 @@ func isValidBST(root *TreeNode) bool {
 	// }
 	// return true
 }
+
 // @lc code=end
 

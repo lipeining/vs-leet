@@ -6,7 +6,47 @@
 
 // @lc code=start
 func validTicTacToe(board []string) bool {
-
+	xc, oc := 0, 0
+	m := len(board)
+	n := len(board[0])
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if board[i][j] == 'X' {
+				xc++
+			} else if board[i][j] == 'O' {
+				oc++
+			}
+		}
+	}
+	if xc-oc < 0 || xc-oc >= 2 {
+		return false
+	}
+	pass := func(win byte) bool {
+		for i := 0; i < m; i++ {
+			if board[i][0] == win && board[i][1] == win && board[i][2] == win {
+				return true
+			}
+		}
+		for i := 0; i < n; i++ {
+			if board[0][i] == win && board[1][i] == win && board[2][i] == win {
+				return true
+			}
+		}
+		if board[0][0] == win && board[1][1] == win && board[2][2] == win {
+			return true
+		}
+		if board[0][2] == win && board[1][1] == win && board[2][0] == win {
+			return true
+		}
+		return false
+	}
+	if pass(byte('X')) && xc != oc+1 {
+		return false
+	}
+	if pass(byte('O')) && xc != oc {
+		return false
+	}
+	return true
 }
 
 // @lc code=end

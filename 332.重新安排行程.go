@@ -8,51 +8,37 @@
 func findItinerary(tickets [][]string) []string {
 	graph := getGraph(tickets)
 	ans := make([]string, 0)
-	var dfs func (graph map[string][]string, start string) 
-	dfs = func (graph map[string][]string, start string) {
-		list,ok := graph[start]
-		if !ok {
-			return
-		}
-		length := len(list)
-		for length != 0 {
-			head := list[0]
-			dfs(graph, head)
-			length--
-			list = list[1:]
-			// graph[start] = graph[start][1:]
+	var dfs func(start string)
+	dfs = func(start string) {
+		for {
+			if v, ok := graph[start]; !ok || len(v) == 0 {
+				break
+			}
+			tmp := graph[start][0]
+			graph[start] = graph[start][1:]
+			dfs(tmp)
 		}
 		// fmt.Println(graph)
 		ans = append([]string{start}, ans...)
 	}
-	dfs(graph, "JFK")
+	dfs("JFK")
 	// fmt.Println(ans)
 	return ans
 }
 
 func getGraph(tickets [][]string) map[string][]string {
 	m := make(map[string][]string)
-	for i:=0;i<len(tickets);i++ {
+	for i := 0; i < len(tickets); i++ {
 		from := tickets[i][0]
 		to := tickets[i][1]
-		_,took := m[to]
-		if !took {
-			m[to] = make([]string, 0)
-		}
-		list,ok := m[from]
-		if ok {
-			m[from] = append(list, to)
-		} else {
-			list = make([]string, 0)
-			list = append(list, to)
-			m[from] = list
-		}
+		m[from] = append(m[from], to)
 	}
-	for k,_ := range m {
+	for k, _ := range m {
 		sort.Strings(m[k])
 	}
-	fmt.Println(m)
+	// fmt.Println(m)
 	return m
 }
+
 // @lc code=end
 

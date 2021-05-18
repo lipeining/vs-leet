@@ -5,10 +5,10 @@
  */
 
 // @lc code=start
-func shoppingOffers(price []int, special [][]int, needs []int) int {
+// func shoppingOffers(price []int, special [][]int, needs []int) int {
 
-}
-func shoppingOffersDFS(price []int, special [][]int, needs []int) int {
+// }
+func shoppingOffers(price []int, special [][]int, needs []int) int {
 	var dfs func(price []int, special [][]int, needs []int) int
 	dfs = func(price []int, special [][]int, needs []int) int {
 		res := dot(price, needs)

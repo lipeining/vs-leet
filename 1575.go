@@ -9,7 +9,7 @@ import "fmt"
 // 	countRoutes([]int{2, 1, 5}, 0, 0, 3)
 // 	countRoutes([]int{1, 2, 3}, 0, 2, 40)
 // }
-func countRoutes(locations []int, start, finish, fuel int) int {
+func countRoutes1575(locations []int, start, finish, fuel int) int {
 	n := len(locations)
 	dp := make([][]int, n)
 	for i := 0; i < n; i++ {

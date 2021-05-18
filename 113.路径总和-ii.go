@@ -15,8 +15,38 @@
  */
 func pathSum(root *TreeNode, sum int) [][]int {
 	ans := make([][]int, 0)
-    var dfs func(root *TreeNode, path []int, target int)
-    dfs = func(root *TreeNode, path []int, target int) {
+	isLeaf := func(node *TreeNode) bool {
+		return node.Left == nil && node.Right == nil
+	}
+	var dfs func(root *TreeNode, path []int, target int)
+	dfs = func(root *TreeNode, path []int, target int) {
+		if root == nil {
+			return
+		}
+		if isLeaf(root) {
+			if root.Val == target {
+				path = append(path, root.Val)
+				tmp := make([]int, len(path))
+				copy(tmp, path)
+				ans = append(ans, tmp)
+			}
+		} else {
+			path = append(path, root.Val)
+			dfs(root.Left, path, target-root.Val)
+			path = path[:len(path)-1]
+			path = append(path, root.Val)
+			dfs(root.Right, path, target-root.Val)
+			path = path[:len(path)-1]
+		}
+	}
+	path := make([]int, 0)
+	dfs(root, path, sum)
+	return ans
+}
+func pathSumOld(root *TreeNode, sum int) [][]int {
+	ans := make([][]int, 0)
+	var dfs func(root *TreeNode, path []int, target int)
+	dfs = func(root *TreeNode, path []int, target int) {
 		if root == nil {
 			return
 		}
@@ -32,8 +62,8 @@ func pathSum(root *TreeNode, sum int) [][]int {
 			copy(t2, path)
 			t1 = append(t1, root.Val)
 			t2 = append(t2, root.Val)
-			dfs(root.Left, t1, target - root.Val)
-			dfs(root.Right, t2, target - root.Val)
+			dfs(root.Left, t1, target-root.Val)
+			dfs(root.Right, t2, target-root.Val)
 		}
 	}
 	path := make([]int, 0)
@@ -43,5 +73,6 @@ func pathSum(root *TreeNode, sum int) [][]int {
 func isLeaf(t *TreeNode) bool {
 	return t.Left == nil && t.Right == nil
 }
+
 // @lc code=end
 
