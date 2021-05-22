@@ -8,5 +8,6 @@
 func countSmaller(nums []int) []int {
 
 }
+
 // @lc code=end
 

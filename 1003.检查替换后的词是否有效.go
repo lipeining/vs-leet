@@ -3,24 +3,35 @@
  *
  * [1003] 检查替换后的词是否有效
  */
+package main
+
+// import "fmt"
+
+// func main() {
+// 	isValid("aabcbc")
+// 	isValid("abacbcabcc")
+// }
 
 // @lc code=start
 func isValid(S string) bool {
 	stack := make([]string, 0)
-	for i:=0;i<len(S);i++ {
+	for i := 0; i < len(S); i++ {
 		length := len(stack)
 		if length >= 2 && S[i] == 'c' {
 			prev := stack[length-2]
 			next := stack[length-1]
 			if prev == "a" && next == "b" {
 				stack = stack[:length-2]
+			} else {
+				stack = append(stack, string(S[i]))
 			}
 		} else {
 			stack = append(stack, string(S[i]))
 		}
-		fmt.Println(stack)
+		// fmt.Println(stack)
 	}
+	// fmt.Println(stack)
 	return len(stack) == 0
 }
-// @lc code=end
 
+// @lc code=end

@@ -31,16 +31,16 @@
 // 链接：https://leetcode-cn.com/problems/course-schedule/solution/course-schedule-tuo-bu-pai-xu-bfsdfsliang-chong-fa/
 // 来源：力扣（LeetCode）
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-func canFinish(numCourses int, prerequisites [][]int) bool { 
+func canFinish(numCourses int, prerequisites [][]int) bool {
 	adjacency := make([][]int, numCourses)
-	for i:=0;i<numCourses;i++ {
+	for i := 0; i < numCourses; i++ {
 		adjacency[i] = make([]int, numCourses)
 	}
-	for i:=0;i<len(prerequisites);i++ {
+	for i := 0; i < len(prerequisites); i++ {
 		adjacency[prerequisites[i][0]][prerequisites[i][1]] = 1
 	}
 	flags := make([]int, numCourses)
-	for i:=0;i<numCourses;i++ {
+	for i := 0; i < numCourses; i++ {
 		if !dfs(adjacency, flags, i) {
 			return false
 		}
@@ -56,7 +56,7 @@ func dfs(adjacency [][]int, flags []int, i int) bool {
 		return true
 	}
 	flags[i] = 1
-	for j:=0;j<len(adjacency);j++ {
+	for j := 0; j < len(adjacency); j++ {
 		if adjacency[i][j] == 1 && !dfs(adjacency, flags, j) {
 			return false
 		}
@@ -65,7 +65,7 @@ func dfs(adjacency [][]int, flags []int, i int) bool {
 	return true
 }
 
-// ----------------------------------------- 
+// -----------------------------------------
 
 // func canFinish(numCourses int, prerequisites [][]int) bool {
 // 	indegrees := make([]int, numCourses)
@@ -120,8 +120,7 @@ func dfs(adjacency [][]int, flags []int, i int) bool {
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 // }
 
-// ----------------------------------------- 
-
+// -----------------------------------------
 
 // func canFinish(numCourses int, prerequisites [][]int) bool {
 // 	// 学习回溯算法的操作

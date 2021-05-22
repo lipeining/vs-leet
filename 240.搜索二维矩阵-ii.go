@@ -14,9 +14,9 @@ func searchMatrix(matrix [][]int, target int) bool {
 	if n == 0 {
 		return false
 	}
-	i:=0
-	j:=n-1
-	for i >= 0 && i < m && j >=0 && j < n {
+	i := 0
+	j := n - 1
+	for i >= 0 && i < m && j >= 0 && j < n {
 		if matrix[i][j] == target {
 			return true
 		} else if matrix[i][j] > target {
@@ -27,5 +27,6 @@ func searchMatrix(matrix [][]int, target int) bool {
 	}
 	return false
 }
+
 // @lc code=end
 
