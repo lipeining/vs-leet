@@ -22,7 +22,12 @@ func wiggleMaxLength(nums []int) int {
 	// 	return up
 	// }
 	// return down
-
+	max := func(a, b int)int{
+		if a > b {
+			return a
+		}
+		return b
+	}
 	length := len(nums)
 	if length == 0 {
 		return 0
@@ -40,12 +45,12 @@ func wiggleMaxLength(nums []int) int {
 	}
 	return 1 + max(up[length-1], down[length-1])
 }
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
+// func max(a, b int) int {
+// 	if a > b {
+// 		return a
+// 	}
+// 	return b
+// }
 
 // @lc code=end
 // public int wiggleMaxLength(int[] nums) {
