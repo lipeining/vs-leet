@@ -6,6 +6,8 @@
 
 // @lc code=start
 func strangePrinter(s string) int {
+}
+func strangePrinterDP(s string) int {
 	n := len(s)
 	if n == 0 {
 		return 0

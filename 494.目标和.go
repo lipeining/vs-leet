@@ -6,6 +6,44 @@
 
 // @lc code=start
 func findTargetSumWays(nums []int, S int) int {
+	n := len(nums)
+	sum := 0
+	for _, num := range nums {
+		sum += num
+	}
+	if sum < S || (S+sum)%2 != 0 {
+		return 0
+	}
+	target := (S + sum) / 2
+	dp := make([]int, target+1)
+	dp[0] = 1
+	// 前 i 个数，0,1 的取法，可以得到 target 的方法数
+	// target 从大到小
+	for i := 1; i <= n; i++ {
+		num := nums[i-1]
+		for j := target; j >= num; j-- {
+			dp[j] += dp[j-num]
+		}
+	}
+	return dp[target]
+	// n := len(nums)
+	// ans := 0
+	// // dp 转为 sum/2 的零一背包
+	// var dfs func(index int, sum int)
+	// dfs = func(index int, sum int) {
+	// 	if index == n {
+	// 		if sum == S {
+	// 			ans++
+	// 		}
+	// 		return
+	// 	}
+	// 	dfs(index+1, sum+nums[index])
+	// 	dfs(index+1, sum-nums[index])
+	// }
+	// dfs(0, 0)
+	// return ans
+}
+func findTargetSumWaysDP(nums []int, S int) int {
 	if S > 1000 {
 		return 0
 	}

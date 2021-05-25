@@ -6,13 +6,13 @@
 
 // @lc code=start
 func findOrder(numCourses int, prerequisites [][]int) []int {
-    indegrees := make([]int, numCourses)
-	for i:=0;i<len(prerequisites);i++ {
+	indegrees := make([]int, numCourses)
+	for i := 0; i < len(prerequisites); i++ {
 		indegrees[prerequisites[i][0]]++
 	}
 	queue := make([]int, 0)
 	// 将度为0的入队
-	for i:=0;i<numCourses;i++ {
+	for i := 0; i < numCourses; i++ {
 		if indegrees[i] == 0 {
 			queue = append(queue, i)
 		}
@@ -24,8 +24,8 @@ func findOrder(numCourses int, prerequisites [][]int) []int {
 		queue = queue[1:]
 		numCourses--
 		ans = append(ans, pre)
-    //  如果这里不用 for 循环的话，需要维护一个邻接表
-		for i:=0;i<len(prerequisites);i++ {
+		//  如果这里不用 for 循环的话，需要维护一个邻接表
+		for i := 0; i < len(prerequisites); i++ {
 			if prerequisites[i][1] != pre {
 				continue
 			}
@@ -41,5 +41,6 @@ func findOrder(numCourses int, prerequisites [][]int) []int {
 	}
 	return ans
 }
+
 // @lc code=end
 

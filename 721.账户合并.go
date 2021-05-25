@@ -9,7 +9,7 @@
 // 其实整数和字符串是一样的，不过整数的并查集使用了 array 来简化 map
 // map[int]int <=> []int
 func find(root map[string]string, node string) string {
-	if root[node]==node {
+	if root[node] == node {
 		return node
 	}
 	return find(root, root[node])
@@ -22,7 +22,7 @@ func find(root map[string]string, node string) string {
 func union(root map[string]string, p string, q string) {
 	pRoot := find(root, p)
 	qRoot := find(root, q)
-	if pRoot==qRoot {
+	if pRoot == qRoot {
 		return
 	}
 	root[qRoot] = pRoot
@@ -31,41 +31,41 @@ func union(root map[string]string, p string, q string) {
 func accountsMerge(accounts [][]string) [][]string {
 	root := make(map[string]string)
 	emailToName := make(map[string]string)
-	// 初始化单个的 root 
+	// 初始化单个的 root
 	// 这里需要考虑 emailToName 覆盖问题吧
-	for _,a := range accounts {
-		for i:=1;i<len(a);i++ {
+	for _, a := range accounts {
+		for i := 1; i < len(a); i++ {
 			emailToName[a[i]] = a[0]
 			root[a[i]] = a[i]
 		}
 	}
 	// fmt.Println(emailToName)
 	// fmt.Println(root)
-	for _,a := range accounts {
-		for i:=1;i<len(a)-1;i++ {
+	for _, a := range accounts {
+		for i := 1; i < len(a)-1; i++ {
 			union(root, a[i], a[i+1])
 		}
 	}
 	// fmt.Println(root)
 	m := make(map[string]map[string]bool)
-	for _,a := range accounts {
-		for _,s := range a[1:] {
+	for _, a := range accounts {
+		for _, s := range a[1:] {
 			r := find(root, s)
-			if _,ok := m[r]; !ok {
+			if _, ok := m[r]; !ok {
 				m[r] = make(map[string]bool)
 			}
 			m[r][s] = true
 		}
 	}
 	ans := make([][]string, 0)
-	for r,sub := range m {
+	for r, sub := range m {
 		list := make([]string, 0)
-		for s,_ := range sub {
+		for s, _ := range sub {
 			list = append(list, s)
 		}
 		sort.Strings(list)
 		// fmt.Println(list)
-		name,_ := emailToName[r]
+		name, _ := emailToName[r]
 		list = append([]string{name}, list...)
 		ans = append(ans, list)
 	}

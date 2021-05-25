@@ -14,6 +14,27 @@
  * }
  */
 func rob(root *TreeNode) int {
+	f, g := make(map[*TreeNode]int), make(map[*TreeNode]int)
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+		return b
+	}
+	var dfs func(node *TreeNode)
+	dfs = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		dfs(node.Left)
+		dfs(node.Right)
+		f[node] = node.Val + g[node.Left] + g[node.Right]
+		g[node] = max(f[node.Left], g[node.Left]) + max(f[node.Right], g[node.Right])
+	}
+	dfs(root)
+	return max(f[root], g[root])
+}
+func robTimeout(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
@@ -29,8 +50,8 @@ func rob(root *TreeNode) int {
 		return sum2
 	}
 	return sum
-    // var dfs func(root *TreeNode) int
-    // dfs = func(root *TreeNode) int {
+	// var dfs func(root *TreeNode) int
+	// dfs = func(root *TreeNode) int {
 	// 	if root == nil {
 	// 		return 0
 	// 	}
@@ -50,8 +71,8 @@ func rob(root *TreeNode) int {
 	// }
 	// // [4,1,null,2,null,3]
 	// // if root.Left != nil{
-	// // 	lr += dfs(root.Left) 
-	// // } 
+	// // 	lr += dfs(root.Left)
+	// // }
 	// // if root.Right != nil {
 	// // 	lr += dfs(root.Right)
 	// // }
@@ -60,5 +81,6 @@ func rob(root *TreeNode) int {
 	// }
 	// return lr
 }
+
 // @lc code=end
 

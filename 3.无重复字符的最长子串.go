@@ -12,7 +12,7 @@ func lengthOfLongestSubstring(s string) int {
 	length := len(s)
 	for fast != length {
 		char := string(s[fast])
-		if _,ok := m[char]; ok {
+		if _, ok := m[char]; ok {
 			curLen := len(m)
 			if ans < curLen {
 				ans = curLen

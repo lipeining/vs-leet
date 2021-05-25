@@ -6,8 +6,8 @@
 
 // @lc code=start
 func lemonadeChange(bills []int) bool {
-	count5, count10 := 0,0
-	for i:=0;i<len(bills);i++{
+	count5, count10 := 0, 0
+	for i := 0; i < len(bills); i++ {
 		if bills[i] == 5 {
 			count5++
 		} else if bills[i] == 10 {
@@ -21,7 +21,7 @@ func lemonadeChange(bills []int) bool {
 				if count5 < 3 {
 					return false
 				}
-				count5-=3
+				count5 -= 3
 			} else {
 				count10--
 				if count5 == 0 {
@@ -33,5 +33,6 @@ func lemonadeChange(bills []int) bool {
 	}
 	return true
 }
+
 // @lc code=end
 

@@ -18,6 +18,18 @@ func maximalRectangle(matrix [][]byte) int {
 	for i := 0; i < rows; i++ {
 		dp[i] = make([]int, cols)
 	}
+	min := func(a, b int) int {
+		if a < b {
+			return a
+		}
+		return b
+	}
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+		return b
+	}
 	// 以 i,j 为底的边长
 	ans := 0
 	// 区间 dp 枚举高度
@@ -39,18 +51,19 @@ func maximalRectangle(matrix [][]byte) int {
 	}
 	return ans
 }
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
+
+// func min(a, b int) int {
+// 	if a < b {
+// 		return a
+// 	}
+// 	return b
+// }
+// func max(a, b int) int {
+// 	if a > b {
+// 		return a
+// 	}
+// 	return b
+// }
 
 // @lc code=end
 
