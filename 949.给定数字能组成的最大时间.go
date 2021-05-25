@@ -10,13 +10,13 @@ import (
 	"strconv"
 )
 
-func main() {
-	// largestTimeFromDigits([]int{1, 2, 3, 4})
-	// largestTimeFromDigits([]int{5, 5, 5, 5})
-	// largestTimeFromDigits([]int{0, 0, 0, 0})
-	// largestTimeFromDigits([]int{0, 0, 1, 0})
-	largestTimeFromDigits([]int{1, 1, 1, 0})
-}
+// func main() {
+// 	// largestTimeFromDigits([]int{1, 2, 3, 4})
+// 	// largestTimeFromDigits([]int{5, 5, 5, 5})
+// 	// largestTimeFromDigits([]int{0, 0, 0, 0})
+// 	// largestTimeFromDigits([]int{0, 0, 1, 0})
+// 	largestTimeFromDigits([]int{1, 1, 1, 0})
+// }
 
 // @lc code=start
 func largestTimeFromDigits(arr []int) string {

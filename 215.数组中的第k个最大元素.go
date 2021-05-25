@@ -6,8 +6,13 @@
 
 // @lc code=start
 func findKthLargest(nums []int, k int) int {
-	sort.Ints(nums)
-	return nums[len(nums)-k]
+	n := len(nums)
+	parition := func(i, j int) int {
+
+	}
+	// sort.Ints(nums)
+	// return nums[len(nums)-k]
 }
+
 // @lc code=end
 
