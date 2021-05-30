@@ -15,7 +15,7 @@ func findRepeatedDnaSequences(s string) []string {
 	}
 	// fmt.Println(visited)
 	ans := make([]string, 0)
-	for k,v := range visited {
+	for k, v := range visited {
 		if v > 1 {
 			ans = append(ans, k)
 		}

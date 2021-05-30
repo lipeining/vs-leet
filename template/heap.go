@@ -13,7 +13,15 @@ func (h *hp) Push(v interface{}) { *h = append(*h, v.(pair)) }
 func (h *hp) Pop() interface{}   { a := *h; v := a[len(a)-1]; *h = a[:len(a)-1]; return v }
 func (h *hp) push(v pair)        { heap.Push(h, v) }
 func (h *hp) pop() pair          { return heap.Pop(h).(pair) }
+func (h *hp) init()              { heap.Init(h) }
 
+// pq := make(hp, n)
+// for i:= 0;i<n;i++ {
+// 	pq[i] = pair{}
+// }
+// pq.init()
+// pq := make(hp, 0)
+// pq.push(pair{})
 // An Item is something we manage in a priority queue.
 type Item struct {
 	value    int // The value of the item; arbitrary.

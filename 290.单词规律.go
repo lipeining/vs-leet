@@ -13,15 +13,15 @@ func wordPattern(pattern string, str string) bool {
 	if len(p) != len(s) {
 		return false
 	}
-	for i:= 0; i < len(p); i++ {
+	for i := 0; i < len(p); i++ {
 		c := string(p[i])
-		m,ok := smap[c]
+		m, ok := smap[c]
 		if ok {
 			if m != s[i] {
 				return false
 			}
 		} else {
-			r,rok := rmap[s[i]]
+			r, rok := rmap[s[i]]
 			if rok {
 				if r != c {
 					return false
@@ -34,5 +34,6 @@ func wordPattern(pattern string, str string) bool {
 	}
 	return true
 }
+
 // @lc code=end
 

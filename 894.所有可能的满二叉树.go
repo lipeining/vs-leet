@@ -17,24 +17,24 @@ func allPossibleFBT(N int) []*TreeNode {
 	memo := make(map[int][]*TreeNode)
 	var helper func(N int) []*TreeNode
 	helper = func(N int) []*TreeNode {
-		if _,ok := memo[N]; !ok {
+		if _, ok := memo[N]; !ok {
 			list := make([]*TreeNode, 0)
 			if N == 1 {
-				t := &TreeNode{Val : 0}
+				t := &TreeNode{Val: 0}
 				list = append(list, t)
 			} else if N%2 == 1 {
-				for i:=0;i<N;i++ {
-					j := N-i-1
-					for _,left := range helper(i) {
-						for _,right := range helper(j) {
-							t := &TreeNode{Val:0}
+				for i := 0; i < N; i++ {
+					j := N - i - 1
+					for _, left := range helper(i) {
+						for _, right := range helper(j) {
+							t := &TreeNode{Val: 0}
 							t.Left = left
 							t.Right = right
 							list = append(list, t)
 						}
-					}				
+					}
 				}
-			}	
+			}
 			memo[N] = list
 		}
 		return memo[N]
@@ -42,5 +42,6 @@ func allPossibleFBT(N int) []*TreeNode {
 	helper(N)
 	return memo[N]
 }
+
 // @lc code=end
 

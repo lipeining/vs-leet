@@ -8,8 +8,8 @@
 func findLHS(nums []int) int {
 	// 可以考虑原地交换的方法，那样的话，只需要快慢指针即可
 	counter := make(map[int]int)
-	for _,n :=range nums {
-		c,ok:=counter[n]
+	for _, n := range nums {
+		c, ok := counter[n]
 		if ok {
 			counter[n] = c + 1
 		} else {
@@ -17,21 +17,22 @@ func findLHS(nums []int) int {
 		}
 	}
 	max := 0
-	for n,c := range counter {
-		up := n +1
+	for n, c := range counter {
+		up := n + 1
 		down := n - 1
-		if upNum,ok:=counter[up];ok{
-			if (c+upNum) > max {
+		if upNum, ok := counter[up]; ok {
+			if (c + upNum) > max {
 				max = upNum + c
 			}
 		}
-		if downNum,ok:=counter[down];ok{
-			if (c+downNum) > max {
+		if downNum, ok := counter[down]; ok {
+			if (c + downNum) > max {
 				max = downNum + c
 			}
 		}
 	}
 	return max
 }
+
 // @lc code=end
 

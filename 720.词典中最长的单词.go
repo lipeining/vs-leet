@@ -8,17 +8,17 @@
 func longestWord(words []string) string {
 	smap := make(map[string]bool)
 	ans := ""
-	sort.Strings(words)
-	fmt.Println(words)
-	for _,word := range words {
+	// sort.Strings(words)
+	// fmt.Println(words)
+	for _, word := range words {
 		smap[word] = true
 	}
-	for _,word := range words {
+	for _, word := range words {
 		length := len(word)
-		if length > len(ans) || (length == len(ans) && word < ans)  {
+		if length > len(ans) || (length == len(ans) && word < ans) {
 			flag := true
-			for k:=1;k<length;k++ {
-				if _,ok:=smap[word[0:k]];!ok {
+			for k := 1; k < length; k++ {
+				if _, ok := smap[word[0:k]]; !ok {
 					flag = false
 					break
 				}
@@ -30,5 +30,6 @@ func longestWord(words []string) string {
 	}
 	return ans
 }
+
 // @lc code=end
 
