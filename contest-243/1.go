@@ -3,6 +3,7 @@ package main
 import (
 	"container/heap"
 	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -19,7 +20,7 @@ func minSkips(dist []int, speed int, hoursBefore int) int {
 	for i := 0; i <= n; i++ {
 		dp[i] = make([]float64, n+1)
 		for j := 0; j <= n; j++ {
-			// dp[i][j] = math.MaxFloat32
+			dp[i][j] = math.MaxFloat32
 		}
 	}
 	min := func(a, b float64) float64 {
@@ -28,29 +29,35 @@ func minSkips(dist []int, speed int, hoursBefore int) int {
 		}
 		return b
 	}
-	fix := func(a float64) float64 {
+	EPS := 1e-7
+	ceil := func(a float64) float64 {
 		i := int(a)
-		if a-float64(i) < 0.000001 {
-			return a
+		if a-float64(i) < EPS {
+			return float64(i)
 		}
 		return float64(i + 1)
 	}
+	// dp[0][0] = float64(dist[0]) / float64(speed)
 	dp[0][0] = 0
 	// 到 i 个时，跳过 j 个，完成时间，
 	// 然后最后一个不算休息
-	for i := 1; i < n; i++ {
+	for i := 1; i <= n; i++ {
 		need := float64(dist[i-1]) / float64(speed)
-		for j := 1; j < i; j++ {
-			f := fix(dp[i-1][j] + need)
-			fmt.Println(dp[i-1][j], need, f)
-			dp[i][j] = min(f, dp[i-1][j-1]+need)
+		for j := 0; j <= i; j++ {
+			if j != i {
+				dp[i][j] = min(dp[i][j], ceil(dp[i-1][j]+need))
+			}
+			if j != 0 {
+				dp[i][j] = min(dp[i][j], dp[i-1][j-1]+need)
+			}
 		}
-		dp[i][0] = fix(dp[i-1][0] + need)
-		dp[i][i] = fix(dp[i-1][i-1] + need)
-		fmt.Println("on i", i, dp[i])
-		// dp[i][i] = dp[i-1][i-1] + need
 	}
-	return 0
+	for i := 0; i <= n; i++ {
+		if dp[n][i] < float64(hoursBefore)+EPS {
+			return i
+		}
+	}
+	return -1
 }
 
 type pair struct{ q, i, free int }

@@ -13,6 +13,15 @@
  * }
  */
 func reverseList(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	newHead := reverseList(head.Next)
+	head.Next.Next = head
+	head.Next = nil
+	return newHead
+}
+func reverseListNext(head *ListNode) *ListNode {
 	// 递归不会
 	// if head == nil || head.Next == nil {
 	// 	return head

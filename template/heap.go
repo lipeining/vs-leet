@@ -15,6 +15,30 @@ func (h *hp) push(v pair)        { heap.Push(h, v) }
 func (h *hp) pop() pair          { return heap.Pop(h).(pair) }
 func (h *hp) init()              { heap.Init(h) }
 
+type maxitem struct{ t, i int }
+type maxheap []maxitem
+
+func (h maxheap) Len() int            { return len(h) }
+func (h maxheap) Less(i, j int) bool  { a, b := h[i], h[j]; return a.t > b.t }
+func (h maxheap) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
+func (h *maxheap) Push(v interface{}) { *h = append(*h, v.(maxitem)) }
+func (h *maxheap) Pop() interface{}   { a := *h; v := a[len(a)-1]; *h = a[:len(a)-1]; return v }
+func (h *maxheap) push(v maxitem)     { heap.Push(h, v) }
+func (h *maxheap) pop() maxitem       { return heap.Pop(h).(maxitem) }
+func (h *maxheap) init()              { heap.Init(h) }
+
+type minitem struct{ t, i int }
+type minheap []minitem
+
+func (h minheap) Len() int            { return len(h) }
+func (h minheap) Less(i, j int) bool  { a, b := h[i], h[j]; return a.t < b.t }
+func (h minheap) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
+func (h *minheap) Push(v interface{}) { *h = append(*h, v.(minitem)) }
+func (h *minheap) Pop() interface{}   { a := *h; v := a[len(a)-1]; *h = a[:len(a)-1]; return v }
+func (h *minheap) push(v minitem)     { heap.Push(h, v) }
+func (h *minheap) pop() minitem       { return heap.Pop(h).(minitem) }
+func (h *minheap) init()              { heap.Init(h) }
+
 // pq := make(hp, n)
 // for i:= 0;i<n;i++ {
 // 	pq[i] = pair{}
