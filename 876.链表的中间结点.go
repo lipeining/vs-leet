@@ -15,7 +15,7 @@
 func middleNode(head *ListNode) *ListNode {
 	len := getLen(head)
 	mid := len / 2
-	if len % 2 == 1 {
+	if len%2 == 1 {
 		mid++
 	}
 	p := head
@@ -31,9 +31,10 @@ func getLen(head *ListNode) int {
 	p := head.Next
 	for p != nil {
 		ans++
-		p=p.Next
+		p = p.Next
 	}
 	return ans
 }
+
 // @lc code=end
 

@@ -15,19 +15,19 @@
  */
 func longestUnivaluePath(root *TreeNode) int {
 	ans := 0
-	var arrowDfs func(root *TreeNode)int
-	arrowDfs = func(root *TreeNode)int{
+	var arrowDfs func(root *TreeNode) int
+	arrowDfs = func(root *TreeNode) int {
 		if root == nil {
 			return 0
 		}
 		leftLength := arrowDfs(root.Left)
 		rightLength := arrowDfs(root.Right)
-		l,r:=0,0
-		if root.Left!=nil && root.Left.Val == root.Val {
-			l=leftLength+1
+		l, r := 0, 0
+		if root.Left != nil && root.Left.Val == root.Val {
+			l = leftLength + 1
 		}
-		if root.Right!=nil && root.Right.Val == root.Val {
-			r=rightLength+1
+		if root.Right != nil && root.Right.Val == root.Val {
+			r = rightLength + 1
 		}
 		sum := l + r
 		if sum > ans {
@@ -41,5 +41,6 @@ func longestUnivaluePath(root *TreeNode) int {
 	arrowDfs(root)
 	return ans
 }
+
 // @lc code=end
 
