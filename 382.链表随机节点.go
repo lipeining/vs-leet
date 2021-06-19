@@ -13,17 +13,28 @@
  * }
  */
 type Solution struct {
+	head *ListNode
 }
 
 /** @param head The linked list's head.
   Note that the head is guaranteed to be not null, so it contains at least one node. */
 func Constructor(head *ListNode) Solution {
-
+	return Solution{head}
 }
 
 /** Returns a random node's value. */
 func (this *Solution) GetRandom() int {
-
+	ans := 0
+	cnt := 0
+	cur := this.head
+	for cur != nil {
+		cnt++
+		if rand.Intn(cnt)+1 == cnt {
+			ans = cur.Val
+		}
+		cur = cur.Next
+	}
+	return ans
 }
 
 /**
