@@ -46,6 +46,49 @@ func (h *minheap) init()              { heap.Init(h) }
 // pq.init()
 // pq := make(hp, 0)
 // pq.push(pair{})
+
+type Node struct {
+	price int
+	shop  int
+	movie int
+}
+
+// 一个最大堆实现，不用管他
+type KthLargest struct {
+	IntSlice []*Node
+}
+
+func (h KthLargest) Len() int { return len(h.IntSlice) }
+func (h KthLargest) Less(i, j int) bool {
+	vi, vj := h.IntSlice[i], h.IntSlice[j]
+	if vi.price != vj.price {
+		return vi.price > vj.price
+	} else {
+		if vi.shop != vj.shop {
+			return vi.shop > vj.shop
+		} else {
+			return vi.movie > vj.movie
+		}
+	}
+}
+func (h KthLargest) Swap(i, j int) { h.IntSlice[i], h.IntSlice[j] = h.IntSlice[j], h.IntSlice[i] }
+
+func (kl *KthLargest) Push(v interface{}) {
+	kl.IntSlice = append(kl.IntSlice, v.(*Node))
+}
+
+func (kl *KthLargest) Pop() interface{} {
+	a := kl.IntSlice
+	v := a[len(a)-1]
+	kl.IntSlice = a[:len(a)-1]
+	return v
+}
+
+// 作者：casxt
+// 链接：https://leetcode-cn.com/problems/design-movie-rental-system/solution/golang-jie-fa-by-casxt-83lm/
+// 来源：力扣（LeetCode）
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
 // An Item is something we manage in a priority queue.
 type Item struct {
 	value    int // The value of the item; arbitrary.

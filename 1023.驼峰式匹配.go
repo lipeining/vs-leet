@@ -7,11 +7,11 @@ package main
 
 import "fmt"
 
-func main() {
-	// camelMatch([]string{"FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"}, "FB")
-	// camelMatch([]string{"FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"}, "FoBa")
-	camelMatch([]string{"IXfGawluvnCa", "IsXfGaxwulCa", "IXfGawlqtCva", "IXjfGawlmeCa", "IXfGnaynwlCa", "IXfGawlCa"}, "IXfGawlCa")
-}
+// func main() {
+// 	// camelMatch([]string{"FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"}, "FB")
+// 	// camelMatch([]string{"FooBar", "FooBarTest", "FootBall", "FrameBuffer", "ForceFeedBack"}, "FoBa")
+// 	camelMatch([]string{"IXfGawluvnCa", "IsXfGaxwulCa", "IXfGawlqtCva", "IXjfGawlmeCa", "IXfGnaynwlCa", "IXfGawlCa"}, "IXfGawlCa")
+// }
 
 // @lc code=start
 func camelMatch(queries []string, pattern string) []bool {

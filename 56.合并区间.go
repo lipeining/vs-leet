@@ -6,23 +6,23 @@
 
 // @lc code=start
 func merge(intervals [][]int) [][]int {
-    sort.Slice(intervals, func (i int, j int)bool {
+	sort.Slice(intervals, func(i int, j int) bool {
 		left := intervals[i][0] - intervals[j][0]
 		if left != 0 {
 			return left < 0
 		}
 		return intervals[i][1] < intervals[j][1]
 	})
-	fmt.Println(intervals)
+	// fmt.Println(intervals)
 	stack := make([][]int, 0)
-	for i:=0;i<len(intervals);i++ {
+	for i := 0; i < len(intervals); i++ {
 		length := len(stack)
 		if length == 0 {
 			stack = append(stack, intervals[i])
 		} else {
 			top := stack[length-1]
 			m := getMerge(top, intervals[i])
-			fmt.Println(m)
+			// fmt.Println(m)
 			if len(m) == 0 {
 				stack = append(stack, intervals[i])
 			} else {
@@ -45,5 +45,6 @@ func getMerge(top []int, interval []int) []int {
 	ans = append(ans, top[0], max)
 	return ans
 }
+
 // @lc code=end
 

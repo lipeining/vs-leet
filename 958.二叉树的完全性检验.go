@@ -15,7 +15,7 @@
  */
 func isCompleteTree(root *TreeNode) bool {
 	// bfs 划水吧
-	// 先得到 depth 
+	// 先得到 depth
 	if root == nil {
 		return true
 	}
@@ -28,13 +28,13 @@ func isCompleteTree(root *TreeNode) bool {
 		if t.Left == nil && t.Right != nil {
 			return false
 		}
-		if leaf && (t.Left!=nil || t.Right !=nil) {
+		if leaf && (t.Left != nil || t.Right != nil) {
 			return false
 		}
-		if t.Left !=nil {
+		if t.Left != nil {
 			queue = append(queue, t.Left)
 		}
-		if t.Right !=nil {
+		if t.Right != nil {
 			queue = append(queue, t.Right)
 		} else {
 			leaf = true
@@ -42,7 +42,7 @@ func isCompleteTree(root *TreeNode) bool {
 	}
 	return true
 }
-func depth(root *TreeNode)int {
+func depth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
@@ -53,5 +53,6 @@ func depth(root *TreeNode)int {
 	}
 	return 1 + right
 }
+
 // @lc code=end
 
